@@ -16,12 +16,14 @@ const ProductItem = (props) => {
     };
 
     return (
-        <div className="product-item" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <div className="product-item">
             <img src={props.image} alt={props.name} />
-            <h1>{props.name}</h1>
+            <h1 onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>{props.name}</h1>
             {hovering && <p>{props.description}</p>}
             <p>{props.price}</p>
             <button className="Add-To-Cart-Button" onClick={handleAddToCart}>Add to Cart</button>
         </div>
     );
 }
+
+export default ProductItem;

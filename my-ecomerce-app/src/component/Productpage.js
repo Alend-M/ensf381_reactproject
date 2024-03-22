@@ -1,12 +1,16 @@
 import React from 'react';
 import Header from './Header';
-import ProductItem from './ProductItem'; 
+import ProductList from './ProductList';
+import CartItem from './CartItem';
 
 const Productpage = () => {
     return(
-        <div>
-            <Header />
-            <h1>Product Page</h1>
+        <div class="Product-Page">
+            <Header/>
+            <div>
+                <CartItem/>
+                <ProductList />
+            </div>
         </div>
     );
 }
