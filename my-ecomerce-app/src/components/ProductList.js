@@ -1,5 +1,5 @@
 import ProductItem from './ProductItem';
-import ProductsData from '../data/products.json';
+import ProductsData from '../data/products.js';
 
 const ProductList = ({handleAddToCart}) => {
     

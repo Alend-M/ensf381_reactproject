@@ -10,7 +10,7 @@ const Header = () => {
 			<div className="comp-name">E-Mart</div>
 			<nav>
 				<a href="/">Home</a>
-				<a href="/products">Products</a>
+				<a href="./Productpage.js">Products</a>
 				<a href="/login">Login</a>
 			</nav>
 		</header>
