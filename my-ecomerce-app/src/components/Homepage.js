@@ -15,7 +15,8 @@ const Homepage = () => {
 				<Routes>
 					<Route exact path="/" element={<HomeMainSection />} />
 					<Route exact path="/Productpage" element={<Productpage />} />
-					<Route exact path="/products" element={<ProductList />} />
+					<Route exact path="/products" element={<Productpage />} />
+					<Route exact path="/login" element={<HomeMainSection />} />
 				</Routes>
 				<Footer />
 			</BrowserRouter>
