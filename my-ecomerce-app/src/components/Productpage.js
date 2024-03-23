@@ -10,7 +10,9 @@ const Productpage = () => {
 
 	return (
 		<div className="product-page">
+			
 			<p1>pretend this is a product page</p1>
+			
 		</div>
 	);
 };
