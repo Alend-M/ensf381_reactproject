@@ -1,0 +1,2 @@
+ignore this text file
+its just so the component folder gets pushed into the github
