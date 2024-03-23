@@ -1,4 +1,4 @@
-import React, {useState}from 'react';
+import React, {useState, useEffect}from 'react';
 import Header from './Header';
 import ProductList from './ProductList';
 import Cart from './Cart';
@@ -7,6 +7,21 @@ import Footer from './Footer';
 const Productpage = () => {
     const [cartItems, setCartItems] = useState([]);
     const [quantity, setQuantity] = useState([]);
+
+    useEffect(() => {
+        const storedCartItems = localStorage.getItem('cartItems');
+        const storedQuantity = localStorage.getItem('quantity');
+        if (storedCartItems && storedQuantity) {
+            setCartItems(JSON.parse(storedCartItems));
+            setQuantity(JSON.parse(storedQuantity));
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        localStorage.setItem('quantity', JSON.stringify(quantity));
+    }, [cartItems, quantity]);
+
 
     const handleRemoveItem = (id) => {
         const CartItem = cartItems.filter(item => item.id === id);
@@ -38,7 +53,7 @@ const Productpage = () => {
             <table>
                 <tr>
                     <td><ProductList handleAddToCart={handleAddToCart} /></td>
-                    <td style={{verticalAlign:'top'}}><Cart CartItems={cartItems} handleRemoveItem={handleRemoveItem} /></td>
+                    <td style={{verticalAlign:'top'}}><Cart CartItems={cartItems} quantity={quantity} handleRemoveItem={handleRemoveItem} /></td>
                 </tr>
             </table>
             <Footer />

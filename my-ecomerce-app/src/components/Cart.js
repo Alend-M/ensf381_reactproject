@@ -1,13 +1,13 @@
-import { useState } from "react";
 import CartItem from "./CartItem";
 
-const Cart = ({cartItems, handleRemoveItem}) => {
+const Cart = ({cartItems, handleRemoveItem, quantity}) => {
+
     return (
         <div>
             <h1>Cart</h1>
             <div>
-                {cartItems.map(item => (
-                    <CartItem key={item.id} item={item} handleRemoveItem={handleRemoveItem} />
+                {cartItems.map((item, index) => (
+                    <CartItem key={item.id} item={item} handleRemoveItem={handleRemoveItem} index={index} quantity={quantity}/>
                 ))}
             </div>
         </div>
