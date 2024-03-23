@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import reviewsData from "../data/review";
-import {BrowserRouter as Router, useNavigate } from "react-router-dom";
+import { BrowserRouter as Router, useNavigate } from "react-router-dom";
 
 const HomeMainSection = () => {
 	const [reviews, setReviews] = useState([]);
@@ -32,7 +32,6 @@ const HomeMainSection = () => {
 				<button className="shop-now-btn" onClick={handleButtonClick}>
 					Shop Now
 				</button>
-
 			</section>
 			<section className="customer-reviews-section">
 				<h2>Customer Reviews</h2>
