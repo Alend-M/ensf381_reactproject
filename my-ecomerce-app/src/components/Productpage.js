@@ -3,10 +3,13 @@ import Header from './Header';
 import ProductList from './ProductList';
 import Cart from './Cart';
 import Footer from './Footer';
+import product from '../data/products';
 
 const Productpage = () => {
     const [cartItems, setCartItems] = useState([]);
     const [quantity, setQuantity] = useState([]);
+    const [pricePerItem, setPricePerItem] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(0);
 
     useEffect(() => {
         const storedCartItems = localStorage.getItem('cartItems');
@@ -24,26 +27,64 @@ const Productpage = () => {
 
 
     const handleRemoveItem = (id) => {
-        const CartItem = cartItems.filter(item => item.id === id);
-        const index = cartItems.indexOf(CartItem);
-        if (quantity > 1){
-            setQuantity(quantity[index] - 1);
-        }else{
-            setCartItems(cartItems.filter(item => item.id !== id));
-            setQuantity(quantity.filter((_, i) => i !== index));
+        console.log("Removing item: " + id);
+        const index = cartItems.indexOf(id);
+        if (index !== -1) {
+            if (quantity[index] > 1) {
+                setQuantity(prevQuantity => {
+                    const updatedQuantity = [...prevQuantity];
+                    updatedQuantity[index]--;
+                    return updatedQuantity;
+                });
+                setPricePerItem(prevPricePerItem => {
+                    const updatedPricePerItem = [...prevPricePerItem];
+                    updatedPricePerItem[index] = updatedPricePerItem[index] - product[id-1].price;
+                    return updatedPricePerItem;
+                });
+            } else {
+                setCartItems(prevCartItems => {
+                    const updatedCartItems = [...prevCartItems];
+                    updatedCartItems.splice(index, 1);
+                    return updatedCartItems;
+                });
+                setQuantity(prevQuantity => {
+                    const updatedQuantity = [...prevQuantity];
+                    updatedQuantity.splice(index, 1);
+                    return updatedQuantity;
+                });
+                setPricePerItem(prevPricePerItem => {
+                    const updatedPricePerItem = [...prevPricePerItem];
+                    updatedPricePerItem.splice(index, 1);
+                    return updatedPricePerItem;
+                });
+            }
         }
+        setTotalPrice(prevTotalPrice => prevTotalPrice - product[id-1].price);
     };
+    
 
     const handleAddToCart = (id) => {
-        const product = cartItems.find(item => item.id === id);
-        if (product){
-            const index = cartItems.indexOf(product);
-            setQuantity(quantity[index] + 1);
-        }else{
-            const newProduct = id
-            setCartItems([...cartItems, newProduct]);
-            setQuantity([...quantity, 1]);
+        console.log("Adding item: " + id);
+        const index = cartItems.indexOf(id);
+        if (index !== -1) {
+            setQuantity(prevQuantity => {
+                const updatedQuantity = [...prevQuantity];
+                updatedQuantity[index]++;
+                return updatedQuantity;
+            });
+            setPricePerItem(prevPricePerItem => {
+                const updatedPricePerItem = [...prevPricePerItem];
+                updatedPricePerItem[index] = updatedPricePerItem[index] + product[id-1].price;
+                return updatedPricePerItem;
+            })
+        } else {
+            setCartItems(prevCartItems => [...prevCartItems, id]);
+            setQuantity(prevQuantity => [...prevQuantity, 1]);
+            setPricePerItem(prevPricePerItem => [...prevPricePerItem, product[id-1].price]);
         }
+        setTotalPrice(prevTotalPrice => prevTotalPrice + product[id-1].price);
+        console.log(cartItems);
+        console.log(quantity);
     };
     
 
@@ -51,14 +92,16 @@ const Productpage = () => {
         <div className="product-page">
             <Header />
             <table>
-                <tr>
-                    <td><ProductList handleAddToCart={handleAddToCart} /></td>
-                    <td style={{verticalAlign:'top'}}><Cart CartItems={cartItems} quantity={quantity} handleRemoveItem={handleRemoveItem} /></td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <td><ProductList handleAddToCart={handleAddToCart} /></td>
+                        <td style={{verticalAlign:'top'}}><Cart cartItems={cartItems} quantity={quantity} handleRemoveItem={handleRemoveItem} pricePerItem={pricePerItem} totalPrice={totalPrice} /></td>
+                    </tr>
+                </tbody>
             </table>
             <Footer />
         </div>
-    );
+    ); 
 }
 
 export default Productpage;

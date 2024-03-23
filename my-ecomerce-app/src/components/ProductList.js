@@ -6,7 +6,7 @@ const ProductList = ({handleAddToCart}) => {
     return (
         <div className="product-list">
             {ProductsData.map((product) => (
-                <ProductItem product={product} handleAddToCart={handleAddToCart()}/>
+                <ProductItem key={product.id} product={product} handleAddToCart={() => handleAddToCart(product.id)}/>
             ))}
         </div>
     );

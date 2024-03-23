@@ -16,7 +16,7 @@ const Homepage = () => {
 				<Footer />
 			</div>
 			<Routes>
-				<Route exact path="./Productpage.js" element={<Productpage />} />
+				<Route exact path="Productpage" element={<Productpage />} />
 			</Routes>
 		</BrowserRouter>
 	);
