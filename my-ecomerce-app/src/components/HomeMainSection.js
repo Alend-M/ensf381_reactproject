@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import reviewsData from "../data/review"; // assuming reviews.js is in the src/data directory
+import reviewsData from "../data/review";
+import {BrowserRouter as Router, useNavigate } from "react-router-dom";
 
 const HomeMainSection = () => {
 	const [reviews, setReviews] = useState([]);
@@ -16,14 +17,22 @@ const HomeMainSection = () => {
 		return shuffled.slice(0, count);
 	};
 
+	const navigate = useNavigate();
+
+	function handleButtonClick() {
+		navigate("./Productpage");
+	}
+
 	return (
 		<div className="home-main-section">
 			<section className="about-us-section">
 				<h2>About Us</h2>
 				<p>Company's vision and mission description goes here.</p>
-				<a href="/products">
-					<button className="shop-now-btn">Shop Now</button>
-				</a>
+
+				<button className="shop-now-btn" onClick={handleButtonClick}>
+					Shop Now
+				</button>
+
 			</section>
 			<section className="customer-reviews-section">
 				<h2>Customer Reviews</h2>
