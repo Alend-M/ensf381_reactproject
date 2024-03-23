@@ -1,5 +1,19 @@
 .logo2{
-    height: 50%;
-    width: 25%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 10%;
+    width: 10%;
 }
 
+nav{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 120px;
+}
+
+.comp-name{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
