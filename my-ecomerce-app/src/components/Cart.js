@@ -11,7 +11,7 @@ const Cart = ({
 }) => {
 	return (
 		<div className="Cart">
-			<h1>Cart</h1>
+			<h1>Shopping Cart</h1>
 			<div>
 				{cartItems === null || cartItems.length === 0 ? (
 					<p>Your cart is empty</p>
@@ -28,7 +28,7 @@ const Cart = ({
 					))
 				)}
 				{cartItems && cartItems.length > 0 && (
-					<p>Total Price(int cart): ${totalPrice.toFixed(2)}</p>
+					<p>Total Price(in cart): ${totalPrice.toFixed(2)}</p>
 				)}
 			</div>
 		</div>

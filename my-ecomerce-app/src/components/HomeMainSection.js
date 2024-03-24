@@ -7,12 +7,10 @@ const HomeMainSection = () => {
 	const [reviews, setReviews] = useState([]);
 
 	useEffect(() => {
-		// Fetching random reviews from reviewsData
 		const randomReviews = getRandomReviews(reviewsData, 2);
 		setReviews(randomReviews);
 	}, []);
 
-	// Function to get random reviews
 	const getRandomReviews = (reviewsArray, count) => {
 		const shuffled = reviewsArray.sort(() => 0.5 - Math.random());
 		return shuffled.slice(0, count);

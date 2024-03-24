@@ -6,6 +6,10 @@
     margin-top: 40px;
 }
 
+.product-item{
+    text-align: left;
+}
+
 .cart-item img {
     max-width: 300px; 
     height: auto; 
@@ -15,7 +19,12 @@
     
 }
 
+.cart-item{
+    text-align: left;
+}
+
 .Cart {
     margin-left: 900px; /* Move the cart to the right */
+    text-align: left;
 }
 
