@@ -10,20 +10,33 @@ const Productpage = () => {
     const [quantity, setQuantity] = useState([]);
     const [pricePerItem, setPricePerItem] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const storedCartItems = localStorage.getItem('cartItems');
-        const storedQuantity = localStorage.getItem('quantity');
-        if (storedCartItems && storedQuantity) {
-            setCartItems(JSON.parse(storedCartItems));
-            setQuantity(JSON.parse(storedQuantity));
+        const storedCartItems = JSON.parse(localStorage.getItem('cartItems'));
+        const storedQuantity = JSON.parse(localStorage.getItem('quantity'));
+        const storedPricePerItem = JSON.parse(localStorage.getItem('pricePerItem'));
+        const storedTotalPrice = JSON.parse(localStorage.getItem('totalPrice'));
+    
+        if (storedCartItems && storedQuantity && storedPricePerItem && storedTotalPrice) {
+            setCartItems(storedCartItems);
+            setQuantity(storedQuantity);
+            setPricePerItem(storedPricePerItem);
+            setTotalPrice(storedTotalPrice);
         }
+        setLoading(false);
     }, []);
+    
 
     useEffect(() => {
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        localStorage.setItem('quantity', JSON.stringify(quantity));
-    }, [cartItems, quantity]);
+        if (!loading) {
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            localStorage.setItem('quantity', JSON.stringify(quantity));
+            localStorage.setItem('pricePerItem', JSON.stringify(pricePerItem));
+            localStorage.setItem('totalPrice', JSON.stringify(totalPrice));
+        }
+    }, [cartItems, quantity, pricePerItem, totalPrice, loading]);
+    
 
 
     const handleRemoveItem = (id) => {
