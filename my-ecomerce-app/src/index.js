@@ -1,3 +1,9 @@
+/*
+Made by: Alend Maci & Agustin Belarde
+UCID: 30179337 & 30115796
+Date: 2024-3-25
+*/
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
