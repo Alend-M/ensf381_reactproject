@@ -15,9 +15,9 @@ const ProductItem = ({ product, handleAddToCart }) => {
 	return (
 		<div className="product-item">
 			<img src={product.image} alt={product.name} />
-			<h1 onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+			<p onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
 				{product.name}
-			</h1>
+			</p>
 			{hovering && <p>{product.description}</p>}
 			<p>Price: {product.price}</p>
 			<button className="Add-To-Cart-Button" onClick={handleAddToCart}>

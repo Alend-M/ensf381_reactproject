@@ -9,6 +9,9 @@
 .product-item{
     text-align: left;
 }
+.product-item p {
+    margin: 0px;
+}
 
 .cart-item img {
     max-width: 300px; 
@@ -22,9 +25,12 @@
 .cart-item{
     text-align: left;
 }
+.cart-item p {
+    margin: 0px;
+}
 
 .Cart {
-    margin-left: 900px; /* Move the cart to the right */
+    margin-left: 700px; 
     text-align: left;
 }
 

@@ -8,7 +8,7 @@ const CartItem = ({ item, handleRemoveItem, quantity,pricePerItem }) => {
     return (
         <div className="cart-item">
             <img src={product.image} alt={product.name}/>
-            <h1>{product.name}</h1>
+            <p>{product.name}</p>
             <p>Price: ${product.price}</p>
             <p>Quantity: {quantity}</p>
             <p>total Price: ${pricePerItem.toFixed(2)}</p>
