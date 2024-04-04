@@ -6,6 +6,8 @@ import HomeMainSection from "./HomeMainSection";
 import Productpage from "./Productpage";
 import ProductList from "./ProductList";
 import Footer from "./Footer";
+import LoginForm from "./LoginForm";
+import SignupForm from "./SignupForm";
 
 const Homepage = () => {
 	return (
@@ -16,7 +18,8 @@ const Homepage = () => {
 					<Route exact path="/" element={<HomeMainSection />} />
 					<Route exact path="/Productpage" element={<Productpage />} />
 					<Route exact path="/products" element={<Productpage />} />
-					<Route exact path="/login" element={<HomeMainSection />} />
+					<Route exact path="/login" element={<LoginForm />} />
+					<Route exact path="/signup" element={<SignupForm />} />
 				</Routes>
 				<Footer />
 			</BrowserRouter>
