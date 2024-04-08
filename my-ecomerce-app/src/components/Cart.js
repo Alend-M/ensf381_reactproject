@@ -8,6 +8,7 @@ const Cart = ({
 	quantity,
 	pricePerItem,
 	totalPrice,
+	products,
 }) => {
 	return (
 		<div className="Cart">
@@ -24,6 +25,7 @@ const Cart = ({
 							index={index}
 							quantity={quantity[index]}
 							pricePerItem={pricePerItem[index]}
+							products={products}
 						/>
 					))
 				)}

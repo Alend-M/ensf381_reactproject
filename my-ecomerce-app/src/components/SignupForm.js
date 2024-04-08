@@ -31,16 +31,36 @@ const SignupForm = () => {
             displayMessage("Passwords do not match", true);
         } else {
             // Call your signup API here
-            // Display success or failure message accordingly
-            displayMessage("Signup successful!", false); // Placeholder for success
-    
-            // Clear input fields
-            setFormData({
-                username: "",
-                password: "",
-                confirmPassword: "",
-                email: ""
-            });
+			fetch("http://localhost:5000/signup", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(formData),
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					if (data.success) {
+						displayMessage(data.success, true);
+						setFormData({
+							username: "",
+							password: "",
+							confirmPassword: "",
+							email: "",
+						});
+					} else {
+						displayMessage(data.error, true);
+						setFormData({
+							username: "",
+							password: "",
+							confirmPassword: "",
+							email: "",
+						});
+					}
+				})
+				.catch((error) => {
+					displayMessage("An error occurred. Please try again later.", true);
+				});
         }
     };
     

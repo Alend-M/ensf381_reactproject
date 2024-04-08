@@ -9,6 +9,7 @@ const HomeMainSection = () => {
 	useEffect(() => {
 		const randomReviews = getRandomReviews(reviewsData, 2);
 		setReviews(randomReviews);
+		localStorage.setItem("isLoggedIn", false);
 	}, []);
 
 	const getRandomReviews = (reviewsArray, count) => {

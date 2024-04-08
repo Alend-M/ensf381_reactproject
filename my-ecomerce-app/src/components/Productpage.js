@@ -1,9 +1,10 @@
 import React, {useState, useEffect}from 'react';
+import { BrowserRouter as Router, useNavigate } from "react-router-dom";
 import Header from './Header';
 import ProductList from './ProductList';
 import Cart from './Cart';
 import Footer from './Footer';
-import product from '../data/products';
+
 
 const Productpage = () => {
     const [cartItems, setCartItems] = useState([]);
@@ -11,6 +12,7 @@ const Productpage = () => {
     const [pricePerItem, setPricePerItem] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const [loading, setLoading] = useState(true);
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
         const storedCartItems = JSON.parse(localStorage.getItem('cartItems'));
@@ -26,8 +28,28 @@ const Productpage = () => {
         }
         setLoading(false);
     }, []);
-    
 
+    useEffect(() => {
+        fetch('http://localhost:5000/products')
+            .then(response => response.json())
+            .then(data => setProducts(data))
+            .catch(error => console.log(error));
+    }, []);
+
+    useEffect(() => {
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        if (!isLoggedIn) {
+            reRoute();
+        }
+    }, []);
+
+    
+    const navigate = useNavigate();
+
+	function reRoute() {
+		navigate("/Login");
+	}
+    
     useEffect(() => {
         if (!loading) {
             localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -37,7 +59,7 @@ const Productpage = () => {
         }
     }, [cartItems, quantity, pricePerItem, totalPrice, loading]);
     
-
+    
 
     const handleRemoveItem = (id) => {
         console.log("Removing item: " + id);
@@ -51,7 +73,7 @@ const Productpage = () => {
                 });
                 setPricePerItem(prevPricePerItem => {
                     const updatedPricePerItem = [...prevPricePerItem];
-                    updatedPricePerItem[index] = updatedPricePerItem[index] - product[id-1].price;
+                    updatedPricePerItem[index] = updatedPricePerItem[index] - products[id-1].price;
                     return updatedPricePerItem;
                 });
             } else {
@@ -72,7 +94,7 @@ const Productpage = () => {
                 });
             }
         }
-        setTotalPrice(prevTotalPrice => prevTotalPrice - product[id-1].price);
+        setTotalPrice(prevTotalPrice => prevTotalPrice - products[id-1].price);
     };
     
 
@@ -87,15 +109,15 @@ const Productpage = () => {
             });
             setPricePerItem(prevPricePerItem => {
                 const updatedPricePerItem = [...prevPricePerItem];
-                updatedPricePerItem[index] = updatedPricePerItem[index] + product[id-1].price;
+                updatedPricePerItem[index] = updatedPricePerItem[index] + products[id-1].price;
                 return updatedPricePerItem;
             })
         } else {
             setCartItems(prevCartItems => [...prevCartItems, id]);
             setQuantity(prevQuantity => [...prevQuantity, 1]);
-            setPricePerItem(prevPricePerItem => [...prevPricePerItem, product[id-1].price]);
+            setPricePerItem(prevPricePerItem => [...prevPricePerItem, products[id-1].price]);
         }
-        setTotalPrice(prevTotalPrice => prevTotalPrice + product[id-1].price);
+        setTotalPrice(prevTotalPrice => prevTotalPrice + products[id-1].price);
         console.log(cartItems);
         console.log(quantity);
     };
@@ -106,8 +128,8 @@ const Productpage = () => {
             <table>
                 <tbody>
                     <tr>
-                        <td><ProductList handleAddToCart={handleAddToCart} /></td>
-                        <td style={{verticalAlign:'top'}}><Cart cartItems={cartItems} quantity={quantity} handleRemoveItem={handleRemoveItem} pricePerItem={pricePerItem} totalPrice={totalPrice} /></td>
+                        <td><ProductList handleAddToCart={handleAddToCart} products={products}/></td>
+                        <td style={{verticalAlign:'top'}}><Cart cartItems={cartItems} quantity={quantity} handleRemoveItem={handleRemoveItem} pricePerItem={pricePerItem} totalPrice={totalPrice} products={products}/></td>
                     </tr>
                 </tbody>
             </table>
