@@ -1,0 +1,42 @@
+.login-content {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+    .login-form h1 {
+        margin-bottom: 15px;
+        text-align: left;
+    }
+  
+  .login-content label {
+    margin-bottom: 5px;
+  }
+  
+  .login-content input {
+    margin-bottom: 10px;
+  }
+
+  .login-btn {
+    margin-top: 10px;
+    width: 75px;
+  }
+
+  .signup-btn {
+    margin-top: 10px;
+    width: 125px;
+  }
+
+  .sign-up-content {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .sign-up-content p {
+    text-align: left;
+    color: red;
+  }
+  
+ 
+  

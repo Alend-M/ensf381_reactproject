@@ -1,0 +1,36 @@
+.product-item img {
+    max-width: 300px; 
+    height: auto; 
+    display: block; 
+    margin-right: 10px; 
+    margin-top: 40px;
+}
+
+.product-item{
+    text-align: left;
+}
+.product-item p {
+    margin: 0px;
+}
+
+.cart-item img {
+    max-width: 300px; 
+    height: auto; 
+    display: block; 
+    margin-right: 10px; 
+    margin-top: 40px;
+    
+}
+
+.cart-item{
+    text-align: left;
+}
+.cart-item p {
+    margin: 0px;
+}
+
+.Cart {
+    margin-left: 700px; 
+    text-align: left;
+}
+

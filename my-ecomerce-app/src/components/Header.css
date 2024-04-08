@@ -1,6 +1,25 @@
-.logo2 {
-    width: 50px;
-    /*sdsd*/
+.logo2{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 10%;
+    width: 5%;
+    padding: 0 15px;
 }
 
+nav{
+    
+    display: flex;
+    justify-content: space-between;
+    margin-top: 120px;
+    padding: 0 15px;
+    
+}
+
+.comp-name{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 15px;
+}
 

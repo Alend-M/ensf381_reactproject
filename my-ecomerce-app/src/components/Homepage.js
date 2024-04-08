@@ -1,24 +1,29 @@
+// Homepage.js
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./Header";
-import "./Header.css";
 import HomeMainSection from "./HomeMainSection";
 import Productpage from "./Productpage";
+import ProductList from "./ProductList";
 import Footer from "./Footer";
+import LoginForm from "./LoginForm";
+import SignupForm from "./SignupForm";
 
 const Homepage = () => {
 	return (
-		<BrowserRouter>
-			<div className="homepage">
+		<div className="homepage">
+			<BrowserRouter>
 				<Header />
-				<HomeMainSection />
+				<Routes>
+					<Route exact path="/" element={<HomeMainSection />} />
+					<Route exact path="/Productpage" element={<Productpage />} />
+					<Route exact path="/products" element={<Productpage />} />
+					<Route exact path="/login" element={<LoginForm />} />
+					<Route exact path="/signup" element={<SignupForm />} />
+				</Routes>
 				<Footer />
-			</div>
-			<Routes>
-				<Route exact path="Productpage" element={<Productpage />} />
-			</Routes>
-		</BrowserRouter>
+			</BrowserRouter>
+		</div>
 	);
 };
 
